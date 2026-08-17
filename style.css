@@ -5,8 +5,10 @@
    3. Layout primitives
    4. Header & navigation
    5. Hero
-   6. Footer
-   7. Motion
+   6. About
+   7. Skills
+   8. Footer
+   9. Motion
    ========================================================================== */
 
 /* ==========================================================================
@@ -589,7 +591,137 @@ ul {
 }
 
 /* ==========================================================================
-   6. Footer
+   6. About
+   ========================================================================== */
+
+.about-inner {
+  display: grid;
+  gap: clamp(var(--space-7), 5vw, var(--space-9));
+  align-items: start;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+}
+
+.prose p + p {
+  margin-top: var(--space-4);
+}
+
+.prose {
+  font-size: var(--text-lg);
+  color: var(--ink-muted);
+}
+
+.prose strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.about-aside {
+  padding: var(--space-6);
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.about-aside h3 {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+}
+
+.about-list {
+  margin-top: var(--space-5);
+}
+
+.about-list li + li {
+  padding-top: var(--space-4);
+  margin-top: var(--space-4);
+  border-top: 1px solid var(--border);
+}
+
+.about-list li {
+  display: flex;
+  gap: var(--space-3);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+}
+
+.about-list svg {
+  flex-shrink: 0;
+  width: 1.0625rem;
+  height: 1.0625rem;
+  margin-top: 0.1rem;
+  color: var(--accent);
+}
+
+@media (max-width: 47.9375rem) {
+  .about-inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ==========================================================================
+   7. Skills
+   ========================================================================== */
+
+.skills-grid {
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+}
+
+.skill-group {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-5);
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.skill-group h3 {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.tag {
+  padding: 0.25rem 0.55rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  line-height: 1.5;
+  color: var(--ink-muted);
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.skill-evidence {
+  margin-top: auto;
+  padding-top: var(--space-5);
+  font-size: var(--text-xs);
+  line-height: var(--leading-snug);
+  color: var(--ink-faint);
+}
+
+.skill-evidence span {
+  font-family: var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   8. Footer
    ========================================================================== */
 
 .footer {
@@ -635,7 +767,7 @@ ul {
 }
 
 /* ==========================================================================
-   7. Motion
+   9. Motion
    ========================================================================== */
 
 .reveal {
