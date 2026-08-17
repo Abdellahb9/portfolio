@@ -8,8 +8,10 @@
    6. About
    7. Skills
    8. Projects
-   9. Footer
-   10. Motion
+   9. Experience & education
+   10. Contact
+   11. Footer
+   12. Motion
    ========================================================================== */
 
 /* ==========================================================================
@@ -861,7 +863,136 @@ ul {
 }
 
 /* ==========================================================================
-   9. Footer
+   9. Experience & education
+   ========================================================================== */
+
+.timeline {
+  position: relative;
+  max-width: 44rem;
+  padding-left: var(--space-6);
+  margin: 0;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0.4rem;
+  bottom: 0.4rem;
+  left: 0.3125rem;
+  width: 2px;
+  background-color: var(--border);
+}
+
+.timeline-item {
+  position: relative;
+}
+
+.timeline-item + .timeline-item {
+  margin-top: var(--space-7);
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  top: 0.4rem;
+  left: calc(-1 * var(--space-6) - 0.0625rem);
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: var(--bg);
+  border: 2.5px solid var(--accent);
+  border-radius: 50%;
+}
+
+.timeline-date {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+}
+
+.timeline-title {
+  margin-top: var(--space-2);
+  font-family: var(--font-sans);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.timeline-desc {
+  margin-top: var(--space-2);
+  font-size: var(--text-base);
+  color: var(--ink-muted);
+}
+
+/* ==========================================================================
+   10. Contact
+   ========================================================================== */
+
+.contact-lead {
+  max-width: 38rem;
+  font-size: var(--text-lg);
+  color: var(--ink-muted);
+}
+
+.contact-cards {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-7);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+}
+
+.contact-card {
+  display: flex;
+  gap: var(--space-4);
+  align-items: center;
+  padding: var(--space-5);
+  text-decoration: none;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow);
+}
+
+.contact-card-icon {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  color: var(--accent);
+  background-color: var(--accent-soft);
+  border-radius: var(--radius);
+}
+
+.contact-card-icon svg {
+  width: 1.375rem;
+  height: 1.375rem;
+}
+
+.contact-card-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+}
+
+.contact-card-value {
+  margin-top: 2px;
+  overflow-wrap: anywhere;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* ==========================================================================
+   11. Footer
    ========================================================================== */
 
 .footer {
@@ -907,7 +1038,7 @@ ul {
 }
 
 /* ==========================================================================
-   10. Motion
+   12. Motion
    ========================================================================== */
 
 .reveal {
