@@ -1041,14 +1041,15 @@ ul {
    12. Motion
    ========================================================================== */
 
-.reveal {
+/* Gated on .js so content never hides when scripts are unavailable */
+.js .reveal {
   opacity: 0;
   transform: translateY(14px);
   transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.reveal.is-visible {
+.js .reveal.is-visible {
   opacity: 1;
   transform: none;
 }
@@ -1066,7 +1067,7 @@ ul {
     animation-iteration-count: 1 !important;
   }
 
-  .reveal {
+  .js .reveal {
     opacity: 1;
     transform: none;
   }
