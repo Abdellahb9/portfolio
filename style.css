@@ -7,8 +7,9 @@
    5. Hero
    6. About
    7. Skills
-   8. Footer
-   9. Motion
+   8. Projects
+   9. Footer
+   10. Motion
    ========================================================================== */
 
 /* ==========================================================================
@@ -721,7 +722,146 @@ ul {
 }
 
 /* ==========================================================================
-   8. Footer
+   8. Projects
+   ========================================================================== */
+
+.projects-list {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.project {
+  display: grid;
+  overflow: hidden;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+}
+
+.project:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow);
+}
+
+.project:nth-child(even) {
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+}
+
+.project:nth-child(even) .project-media {
+  order: 2;
+}
+
+/* Screenshot slot — the gradient placeholder shows until a real image is added */
+.project-media {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 15rem;
+  overflow: hidden;
+  border-bottom: none;
+}
+
+.project-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-media-placeholder {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  padding: var(--space-6);
+}
+
+.project-media-placeholder svg {
+  width: clamp(3rem, 5vw, 4rem);
+  height: auto;
+  opacity: 0.85;
+}
+
+.media-parking {
+  background: linear-gradient(140deg, #0f4c5c, #0f6e5c 55%, #256d43);
+  color: #d9f2e6;
+}
+
+.media-vision {
+  background: linear-gradient(140deg, #3d2c5e, #56357a 55%, #7a3b64);
+  color: #ead9f2;
+}
+
+.media-restaurant {
+  background: linear-gradient(140deg, #8a3324, #b3541e 55%, #c07b25);
+  color: #fbe9d4;
+}
+
+.media-inventory {
+  background: linear-gradient(140deg, #1d3a6e, #29538f 55%, #2b6f8f);
+  color: #d9e8f2;
+}
+
+.media-game {
+  background: linear-gradient(140deg, #7a2f4f, #a13a5e 55%, #b3542e);
+  color: #f7dde2;
+}
+
+.project-body {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(var(--space-5), 3vw, var(--space-7));
+}
+
+.project-kicker {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+.project-title {
+  margin-top: var(--space-2);
+  font-size: var(--text-2xl);
+}
+
+.project-desc {
+  margin-top: var(--space-3);
+  color: var(--ink-muted);
+}
+
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 61.9375rem) {
+  .project,
+  .project:nth-child(even) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .project:nth-child(even) .project-media {
+    order: 0;
+  }
+
+  .project-media {
+    min-height: 12rem;
+    aspect-ratio: 21 / 9;
+  }
+}
+
+/* ==========================================================================
+   9. Footer
    ========================================================================== */
 
 .footer {
@@ -767,7 +907,7 @@ ul {
 }
 
 /* ==========================================================================
-   9. Motion
+   10. Motion
    ========================================================================== */
 
 .reveal {
