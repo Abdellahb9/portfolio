@@ -64,7 +64,8 @@
   --surface: #ffffff;
   --ink: #1a1917;
   --ink-muted: #635f57;
-  --ink-faint: #8b867c;
+  /* Meets WCAG AA (>=4.6:1) against --bg, --bg-subtle, and --surface */
+  --ink-faint: #716d64;
   --border: #e2ded5;
   --border-strong: #cec9bd;
   --accent: #0f6e5c;
@@ -84,7 +85,7 @@
     --surface: #1b1a17;
     --ink: #f3f0ea;
     --ink-muted: #a8a39a;
-    --ink-faint: #7d786f;
+    --ink-faint: #87837a;
     --border: #2d2b26;
     --border-strong: #413e37;
     --accent: #55cfa9;
@@ -104,7 +105,7 @@
   --surface: #1b1a17;
   --ink: #f3f0ea;
   --ink-muted: #a8a39a;
-  --ink-faint: #7d786f;
+  --ink-faint: #87837a;
   --border: #2d2b26;
   --border-strong: #413e37;
   --accent: #55cfa9;
@@ -186,7 +187,8 @@ p {
   text-wrap: pretty;
 }
 
-ul {
+ul,
+ol {
   list-style: none;
   padding: 0;
 }
@@ -856,9 +858,11 @@ ul {
     order: 0;
   }
 
+  /* min-height must yield to aspect-ratio here, or the ratio drives the width
+     past the card and the centred placeholder is clipped off-centre. */
   .project-media {
-    min-height: 12rem;
-    aspect-ratio: 21 / 9;
+    min-height: 0;
+    aspect-ratio: 16 / 7;
   }
 }
 
@@ -976,6 +980,7 @@ ul {
 }
 
 .contact-card-label {
+  display: block;
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   letter-spacing: 0.08em;
@@ -984,6 +989,7 @@ ul {
 }
 
 .contact-card-value {
+  display: block;
   margin-top: 2px;
   overflow-wrap: anywhere;
   font-size: var(--text-sm);
