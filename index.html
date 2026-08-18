@@ -36,6 +36,12 @@
     // Mark that JS is available — reveal-on-scroll styles only apply with this class,
     // so content stays visible when scripts are blocked or fail.
     document.documentElement.classList.add('js');
+    // Failsafe: reveal styles hide content until script.js reveals it. If script.js
+    // never runs (network failure, blocking extension), drop the class so the page
+    // is readable instead of blank. script.js clears this timer on startup.
+    window.__revealFailsafe = setTimeout(function () {
+      document.documentElement.classList.remove('js');
+    }, 2000);
     // Apply the saved theme before first paint to avoid a flash of the wrong palette.
     try {
       var saved = localStorage.getItem('theme');

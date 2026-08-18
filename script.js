@@ -9,6 +9,9 @@
   const root = document.documentElement;
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
+  // This script is running, so the head failsafe that un-hides content is not needed.
+  clearTimeout(window.__revealFailsafe);
+
   /* ---- Theme toggle ---- */
   const themeToggle = document.getElementById('theme-toggle');
   const systemDark = window.matchMedia('(prefers-color-scheme: dark)');
@@ -104,7 +107,7 @@
   /* ---- Reveal on scroll ---- */
   const revealTargets = document.querySelectorAll('.reveal');
 
-  if (prefersReducedMotion.matches) {
+  if (prefersReducedMotion.matches || !('IntersectionObserver' in window)) {
     revealTargets.forEach((el) => el.classList.add('is-visible'));
   } else {
     const revealObserver = new IntersectionObserver((entries) => {
@@ -125,7 +128,7 @@
     if (section) navLinks.set(section, link);
   });
 
-  if (navLinks.size) {
+  if (navLinks.size && 'IntersectionObserver' in window) {
     const visible = new Set();
 
     const setCurrent = () => {
