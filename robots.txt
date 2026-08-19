@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://abdellahbedda.netlify.app/sitemap.xml
+Sitemap: https://bedda-abdellah.netlify.app/sitemap.xml
