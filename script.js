@@ -1,6 +1,6 @@
 /* ==========================================================================
    Abdellah Bedda — Portfolio
-   Theme toggle, mobile navigation, scroll state, reveal-on-scroll.
+   Theme toggle, mobile navigation, scroll progress, reveal-on-scroll.
    ========================================================================== */
 
 (() => {
@@ -84,25 +84,31 @@
     applyNavMode();
   }
 
-  /* ---- Header scroll state (one rAF-throttled listener) ---- */
+  /* ---- Header state + scroll progress (one rAF-throttled listener) ---- */
   const header = document.getElementById('header');
+  const progress = document.getElementById('progress');
+  let queued = false;
 
-  if (header) {
-    let queued = false;
+  const onScroll = () => {
+    const y = window.scrollY;
 
-    const updateHeader = () => {
-      header.dataset.scrolled = String(window.scrollY > 8);
-      queued = false;
-    };
+    if (header) header.dataset.scrolled = String(y > 8);
 
-    window.addEventListener('scroll', () => {
-      if (queued) return;
-      queued = true;
-      requestAnimationFrame(updateHeader);
-    }, { passive: true });
+    if (progress) {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.transform = `scaleX(${max > 0 ? Math.min(y / max, 1) : 0})`;
+    }
 
-    updateHeader();
-  }
+    queued = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(onScroll);
+  }, { passive: true });
+
+  onScroll();
 
   /* ---- Reveal on scroll ---- */
   const revealTargets = document.querySelectorAll('.reveal');
@@ -116,7 +122,7 @@
         entry.target.classList.add('is-visible');
         revealObserver.unobserve(entry.target);
       });
-    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
 
     revealTargets.forEach((el) => revealObserver.observe(el));
   }
