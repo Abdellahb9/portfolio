@@ -221,12 +221,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---- Console greeting ----
   console.log(
-    '%c👋 Hey there! Welcome to Abdellah\'s Portfolio',
-    'color: #6c63ff; font-size: 16px; font-weight: bold;'
+    '%cHey there! Welcome to Abdellah\'s Portfolio',
+    'color: #828fff; font-size: 16px; font-weight: bold;'
   );
   console.log(
-    '%cBuilt with ❤️ and lots of ☕',
-    'color: #00d4aa; font-size: 12px;'
+    '%cBuilt with plain HTML, CSS and JavaScript.',
+    'color: #7e838c; font-size: 12px;'
   );
 
 });
