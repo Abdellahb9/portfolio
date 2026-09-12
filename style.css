@@ -383,6 +383,10 @@ section { position: relative; z-index: 1; }
 .hero {
   position: relative;
   z-index: 1;
+  /* Contains a ~47px sub-pixel overflow from the display-tracked title so the
+     document stops reporting a wider scrollWidth than the viewport. clip
+     rather than hidden: it does not create a scroll container. */
+  overflow-x: clip;
   display: flex;
   align-items: center;
   min-height: 100vh;
@@ -752,7 +756,14 @@ section { position: relative; z-index: 1; }
   border-radius: var(--r-sm);
 }
 
-.project-links { margin-top: auto; padding-top: var(--s-md); }
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-xs);
+  margin-top: auto;
+  padding-top: var(--s-md);
+}
+
 
 /* Spec: CTAs hold >=40px tap height across viewports */
 .project-link {
@@ -773,6 +784,15 @@ section { position: relative; z-index: 1; }
 
 .project-link svg { width: 15px; height: 15px; }
 .project-link:hover { color: var(--accent-text); }
+
+/* Accent variant for the one project with a live deployment. Must come after
+   .project-link, which sets color: var(--ink) at the same specificity. */
+.project-link--demo {
+  color: var(--on-primary);
+  background: var(--primary);
+}
+
+.project-link--demo:hover { color: var(--canvas); background: var(--primary-hover); }
 
 /* ==========================================================================
    9. Experience
