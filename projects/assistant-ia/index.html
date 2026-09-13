@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assistant IA — Internship Matching · Abdellah Bedda</title>
+  <meta name="description" content="Case study: an AI platform that reads CVs, profiles candidates with NLP and assigns interns to departments with the Hungarian algorithm. Built for PHOSBOUCRAA (OCP Group).">
+  <meta name="author" content="Abdellah Bedda">
+  <meta name="color-scheme" content="dark">
+
+  <link rel="canonical" href="https://bedda-abdellah.netlify.app/projects/assistant-ia/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Abdellah Bedda">
+  <meta property="og:title" content="Assistant IA — Internship Matching">
+  <meta property="og:description" content="An AI platform that reads CVs, profiles candidates with NLP and assigns interns to departments with the Hungarian algorithm. Built for PHOSBOUCRAA (OCP Group).">
+  <meta property="og:url" content="https://bedda-abdellah.netlify.app/projects/assistant-ia/">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Assistant IA — Internship Matching">
+  <meta name="twitter:description" content="Case study: NLP CV profiling and globally optimal intern assignment, built for PHOSBOUCRAA (OCP Group).">
+
+  <!-- Favicon (inline SVG) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%235e6ad2'/><text x='50' y='70' font-family='monospace' font-size='52' font-weight='700' fill='%23fff' text-anchor='middle'>AB</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="case-study.css">
+
+  <script>
+    // Reveal-on-scroll hides content until script.js runs; this class gates it so a
+    // blocked or failed script leaves a readable page instead of a blank one.
+    document.documentElement.classList.add('js');
+    window.__revealFailsafe = setTimeout(function () {
+      document.documentElement.classList.remove('js');
+    }, 2000);
+  </script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Background Effects -->
+  <div class="bg-pixel" id="pixel-blast" aria-hidden="true"></div>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- ==================== NAVIGATION ==================== -->
+  <nav class="navbar" id="navbar" aria-label="Main">
+    <div class="container">
+      <a href="../../index.html" class="nav-logo">&lt;AB<span>/</span>&gt;</a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="../../index.html#about">About</a></li>
+        <li><a href="../../index.html#skills">Skills</a></li>
+        <li><a href="../../index.html#projects">Projects</a></li>
+        <li><a href="../../index.html#experience">Experience</a></li>
+        <li><a href="../../index.html#goals">Goals</a></li>
+        <li><a href="../../index.html#contact">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ==================== HERO ==================== -->
+  <header class="cs-hero">
+    <div class="container">
+
+      <a class="cs-back" href="../../index.html#projects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        All projects
+      </a>
+
+      <div class="cs-hero-brand">
+        <img src="../../assets/images/projects/assistant-ia/ocp-logo.webp" alt="OCP Group logo" width="407" height="133" style="width:38px">
+        <span>PHOSBOUCRAA S.A. · OCP Group — Laâyoune, Morocco</span>
+      </div>
+
+      <h1 class="cs-hero-title">Assistant&nbsp;IA — <em>Internship Matching</em></h1>
+
+      <p class="cs-hero-tagline">
+        An internship platform that reads CVs, profiles candidates with NLP, and
+        assigns each intern to the department where they fit best, using the
+        Hungarian algorithm to optimise the whole cohort at once rather than one
+        student at a time.
+      </p>
+
+      <ul class="cs-badges skill-tags">
+        <li class="skill-tag cs-badge-key">Hungarian algorithm</li>
+        <li class="skill-tag cs-badge-key">RAG assistant</li>
+        <li class="skill-tag">React 18</li>
+        <li class="skill-tag">TypeScript</li>
+        <li class="skill-tag">FastAPI</li>
+        <li class="skill-tag">PostgreSQL + pgvector</li>
+        <li class="skill-tag">Supabase</li>
+        <li class="skill-tag">spaCy</li>
+        <li class="skill-tag">Celery</li>
+        <li class="skill-tag">Docker</li>
+      </ul>
+
+      <div class="cs-actions">
+        <a class="btn btn-primary" href="https://pfa-v2-ten.vercel.app" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
+          Live demo
+        </a>
+        <a class="btn btn-secondary" href="https://github.com/Abdellahb9/PFA-V2" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          Source code
+        </a>
+      </div>
+
+      <figure class="cs-figure cs-hero-shot reveal">
+        <div class="cs-shot">
+          <img src="../../assets/images/projects/assistant-ia/dashboard.webp"
+               alt="Admin dashboard showing internship KPI cards and charts of applications by status and by department"
+               width="1600" height="1311" loading="lazy" decoding="async">
+        </div>
+        <figcaption class="cs-caption">Admin dashboard — intake volume, assignment rate and departmental load at a glance.</figcaption>
+      </figure>
+
+    </div>
+  </header>
+
+  <main id="main">
+
+  <!-- ==================== OVERVIEW ==================== -->
+  <section class="cs-section" id="overview">
+    <div class="container reveal">
+      <p class="section-label">// Overview</p>
+      <h2 class="section-title">What it is, and why I built it</h2>
+
+      <p class="cs-lead">
+        PHOSBOUCRAA receives internship applications by email and on paper. Someone
+        then reads every CV, guesses which department might suit each student, and
+        allocates places by hand. It is slow, it is subjective, and because each
+        decision is taken in isolation, the overall result is rarely the best one
+        available.
+      </p>
+
+      <p class="cs-lead">
+        This platform automates the whole chain. A candidate applies through a
+        public portal; the CV is parsed and profiled automatically; every
+        candidate–offer pair is scored on semantics, skills and education level;
+        and the assignment is then solved <strong>globally</strong> — the Hungarian
+        algorithm maximises the total quality of the cohort rather than greedily
+        taking the best match for whoever is processed first. Every proposal
+        carries its score breakdown, so a recruiter can see exactly why it was
+        suggested and accept or reject it.
+      </p>
+
+      <p class="cs-lead">
+        It was my final-year engineering project, and I wanted it to survive
+        contact with reality rather than stay a demo: real authentication and
+        row-level security, background jobs, a document knowledge base, and two
+        complete deployment targets — a full Docker stack for on-premise, and a
+        zero-cost serverless build that runs the same product on free tiers.
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== KEY FEATURES ==================== -->
+  <section class="cs-section" id="features">
+    <div class="container reveal">
+      <p class="section-label">// Key features</p>
+      <h2 class="section-title">What it actually does</h2>
+      <p class="section-description">Six capabilities carry most of the value.</p>
+
+      <div class="cs-grid">
+
+        <article class="cs-card">
+          <h3><span class="cs-dot" aria-hidden="true"></span>CV ingestion &amp; NLP profiling</h3>
+          <p>
+            PDF and DOCX are parsed, then profiled with spaCy plus a skills
+            gazetteer, or an LLM when a key is configured. Skills, education level,
+            field of study and institution are extracted, and the profile is
+            embedded into pgvector for semantic search.
+          </p>
+        </article>
+
+        <article class="cs-card">
+          <h3><span class="cs-dot" aria-hidden="true"></span>Global optimal assignment</h3>
+          <p>
+            Offers expand into capacity slots, a <code class="cs-code">1 − score</code>
+            cost matrix is built, and <code class="cs-code">linear_sum_assignment</code>
+            solves it. The result maximises total cohort fit, a measurably better
+            outcome than matching candidates one by one.
+          </p>
+        </article>
+
+        <article class="cs-card">
+          <h3><span class="cs-dot" aria-hidden="true"></span>Explainable scoring</h3>
+          <p>
+            Every proposal exposes its components — semantic similarity, skill
+            coverage, education fit — with the matched and missing skills named.
+            Recruiters accept or reject with the reasoning in front of them, never
+            a bare number.
+          </p>
+        </article>
+
+        <article class="cs-card">
+          <h3><span class="cs-dot" aria-hidden="true"></span>RAG assistant</h3>
+          <p>
+            A tool-calling agent answers HR questions in French or English over
+            candidates, offers, bookings and uploaded policy documents. Replies
+            stream over SSE, tool calls are announced live, and every claim is
+            grounded in a cited source.
+          </p>
+        </article>
+
+        <article class="cs-card">
+          <h3><span class="cs-dot" aria-hidden="true"></span>Capacity forecasting</h3>
+          <p>
+            An XGBoost model projects next month's demand per department and
+            recommends how many places to open, turning intake history into a
+            planning signal instead of a backward-looking report.
+          </p>
+        </article>
+
+        <article class="cs-card">
+          <h3><span class="cs-dot" aria-hidden="true"></span>Candidate portal</h3>
+          <p>
+            Applicants submit a CV, follow the analysis status live, see their
+            extracted profile, and can request an offer swap by uploading proof of
+            agreement, approved atomically so two swaps can never oversubscribe a
+            place.
+          </p>
+        </article>
+
+      </div>
+
+      <!-- PENDING CAPTURE — both need a staff login, so they cannot be automated.
+           Frame at 1440px wide to match the others, convert to .webp, drop into
+           assets/images/projects/assistant-ia/, then paste these back in:
+
+      <figure class="cs-figure">
+        <div class="cs-shot">
+          <img src="../../assets/images/projects/assistant-ia/matching.webp"
+               alt="Assignment page listing proposed candidate-to-offer matches, with a popover open showing the score split into semantic, skills and education components"
+               width="1600" height="1000" loading="lazy" decoding="async">
+        </div>
+        <figcaption class="cs-caption">Hungarian-algorithm proposals, each openable to reveal its score breakdown.</figcaption>
+      </figure>
+
+      <figure class="cs-figure">
+        <div class="cs-shot">
+          <img src="../../assets/images/projects/assistant-ia/assistant.webp"
+               alt="RAG assistant answering a question in French, showing which tools it called and a table of candidate sources with a cited document excerpt below"
+               width="1600" height="1000" loading="lazy" decoding="async">
+        </div>
+        <figcaption class="cs-caption">The assistant answering from retrieved data, with its tool calls and sources shown.</figcaption>
+      </figure>
+      -->
+
+      <div class="cs-gallery">
+        <figure class="cs-figure">
+          <div class="cs-shot">
+            <img src="../../assets/images/projects/assistant-ia/bookings.webp"
+                 alt="Booked offers screen listing confirmed placements grouped by starting month, each row naming the intern, the offer, its department and the internship period"
+                 width="1600" height="844" loading="lazy" decoding="async">
+          </div>
+          <figcaption class="cs-caption">Confirmed placements, grouped by the month the internship starts.</figcaption>
+        </figure>
+        <figure class="cs-figure">
+          <div class="cs-shot">
+            <img src="../../assets/images/projects/assistant-ia/landing.webp"
+                 alt="Public landing page inviting students to join the internship programmes, with cards for each open offer showing its department, description and required skills"
+                 width="1600" height="1000" loading="lazy" decoding="async">
+          </div>
+          <figcaption class="cs-caption">The public side — open offers, readable without an account.</figcaption>
+        </figure>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== TECH STACK ==================== -->
+  <section class="cs-section" id="stack">
+    <div class="container reveal">
+      <p class="section-label">// Tech stack</p>
+      <h2 class="section-title">Built with</h2>
+      <p class="section-description">
+        Typed end to end — TypeScript on the front, Pydantic and SQLAlchemy on the back.
+      </p>
+
+      <div class="cs-stack">
+
+        <div class="cs-stack-group">
+          <h3>Frontend</h3>
+          <ul class="cs-badges skill-tags">
+            <li class="skill-tag">React 18</li>
+            <li class="skill-tag">TypeScript</li>
+            <li class="skill-tag">Vite</li>
+            <li class="skill-tag">Ant Design 5</li>
+            <li class="skill-tag">TanStack Query</li>
+            <li class="skill-tag">Redux Toolkit</li>
+            <li class="skill-tag">React Router</li>
+            <li class="skill-tag">Recharts</li>
+            <li class="skill-tag">React Hook Form</li>
+            <li class="skill-tag">Zod</li>
+          </ul>
+        </div>
+
+        <div class="cs-stack-group">
+          <h3>Backend &amp; data</h3>
+          <ul class="cs-badges skill-tags">
+            <li class="skill-tag">FastAPI</li>
+            <li class="skill-tag">Python 3.11</li>
+            <li class="skill-tag">SQLAlchemy 2</li>
+            <li class="skill-tag">Alembic</li>
+            <li class="skill-tag">Pydantic v2</li>
+            <li class="skill-tag">Celery + Redis</li>
+            <li class="skill-tag">PostgreSQL</li>
+            <li class="skill-tag">pgvector</li>
+            <li class="skill-tag">Supabase</li>
+            <li class="skill-tag">MinIO (S3)</li>
+            <li class="skill-tag">JWT / OAuth2</li>
+          </ul>
+        </div>
+
+        <div class="cs-stack-group">
+          <h3>AI &amp; tooling</h3>
+          <ul class="cs-badges skill-tags">
+            <li class="skill-tag">spaCy</li>
+            <li class="skill-tag">Sentence-Transformers</li>
+            <li class="skill-tag">scipy</li>
+            <li class="skill-tag">scikit-learn</li>
+            <li class="skill-tag">XGBoost</li>
+            <li class="skill-tag">LangChain</li>
+            <li class="skill-tag">Groq</li>
+            <li class="skill-tag">PyMuPDF</li>
+            <li class="skill-tag">Docker</li>
+            <li class="skill-tag">Nginx</li>
+            <li class="skill-tag">Pytest / Vitest</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== HOW IT WORKS ==================== -->
+  <section class="cs-section" id="how">
+    <div class="container reveal">
+      <p class="section-label">// How it works</p>
+      <h2 class="section-title">From uploaded CV to validated assignment</h2>
+      <p class="section-description">
+        Five stages. Everything heavy runs off the request path, so an upload never
+        blocks on model inference.
+      </p>
+
+      <ol class="cs-flow">
+        <li>
+          <h3>Intake</h3>
+          <p>
+            The candidate submits a CV through the public portal. The file lands in
+            object storage and a background job is queued, so the HTTP response
+            returns immediately.
+          </p>
+        </li>
+        <li>
+          <h3>Parsing &amp; profiling</h3>
+          <p>
+            A worker extracts the text, pulls out skills, education level and
+            institution, normalises them against a shared taxonomy, and writes a
+            semantic embedding into pgvector. The UI polls the status live.
+          </p>
+        </li>
+        <li>
+          <h3>Pairwise scoring</h3>
+          <p>
+            Each candidate–offer pair is scored
+            <code class="cs-code">0.5·semantic + 0.35·skills + 0.15·education</code>,
+            with the weights adjustable from the interface so a recruiter can bias
+            toward skills or toward academic level.
+          </p>
+        </li>
+        <li>
+          <h3>Global optimisation</h3>
+          <p>
+            Offers expand into one column per available place, the cost matrix
+            <code class="cs-code">1 − score</code> is solved with the Hungarian
+            algorithm, and the assignment that maximises total fit is returned as a
+            set of proposals.
+          </p>
+        </li>
+        <li>
+          <h3>Human validation</h3>
+          <p>
+            Nothing is final until a recruiter confirms it. Confirmation is capacity
+            checked in SQL, so an offer can never be overfilled, and the candidate
+            is notified by email.
+          </p>
+        </li>
+      </ol>
+
+      <!-- Diagrams stay full width: the sources are 5500-6400px across and become
+           unreadable slivers in a two-column grid. -->
+      <div class="cs-gallery cs-gallery-stack">
+        <figure class="cs-figure">
+          <div class="cs-diagram">
+            <img src="../../assets/images/projects/assistant-ia/deployment-diagram.webp"
+                 alt="UML deployment diagram: the browser talks to the API gateway, which reaches the application service, background workers, PostgreSQL with pgvector, Redis and object storage"
+                 width="2000" height="874" loading="lazy" decoding="async">
+          </div>
+          <figcaption class="cs-caption">Deployment view — where each piece runs and what talks to what.</figcaption>
+        </figure>
+        <figure class="cs-figure">
+          <div class="cs-diagram">
+            <img src="../../assets/images/projects/assistant-ia/assignment-sequence.webp"
+                 alt="UML sequence diagram of an assignment run: the recruiter triggers matching, the service loads profiles, scores every pair, solves the cost matrix and returns ranked proposals"
+                 width="2000" height="1542" loading="lazy" decoding="async">
+          </div>
+          <figcaption class="cs-caption">Assignment run, end to end — trigger, score, solve, propose.</figcaption>
+        </figure>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== CHALLENGES ==================== -->
+  <section class="cs-section" id="learned">
+    <div class="container reveal">
+      <p class="section-label">// Challenges</p>
+      <h2 class="section-title">What was hard, and what I took from it</h2>
+      <p class="section-description">
+        The interesting problems were not the algorithms. They were the failures
+        that stayed quiet.
+      </p>
+
+      <div class="cs-learn">
+
+        <article>
+          <h3>Shipping the same product twice</h3>
+          <p>
+            The platform runs either as a full Docker stack or as serverless
+            functions on free tiers — two scoring engines, one in Python, one in
+            TypeScript. They drifted almost immediately.
+          </p>
+          <p>
+            <strong>The fix was a shared fixture file</strong> of golden score
+            vectors that both test suites assert against. Changing a scoring rule
+            now breaks both suites until both implementations agree, which is
+            exactly the pressure you want.
+          </p>
+        </article>
+
+        <article>
+          <h3>Retrieval belongs in the database</h3>
+          <p>
+            The first search implementation pulled every candidate row, CV text
+            included, into the function and filtered in JavaScript. It worked on
+            twenty rows and would have quietly truncated at a thousand.
+          </p>
+          <p>
+            <strong>Moving it into Postgres</strong> as a weighted
+            <code class="cs-code">tsvector</code> with trigram name matching cut the
+            transfer to the rows actually needed, and let ranking use real term
+            weighting instead of counting substring hits.
+          </p>
+        </article>
+
+        <article>
+          <h3>Failures that degrade silently are worse than crashes</h3>
+          <p>
+            An LLM provider was misconfigured for months. Every call raised
+            <code class="cs-code">ImportError</code>, every call was caught and
+            logged as a warning, and the system fell back to templated answers while
+            still reporting a working model.
+          </p>
+          <p>
+            <strong>I now separate configuration errors from transient ones.</strong>
+            A network blip may degrade gracefully; a missing dependency must fail
+            loudly at startup.
+          </p>
+        </article>
+
+        <article>
+          <h3>A relevance score has to mean something</h3>
+          <p>
+            Document search normalised each result against the best hit in its own
+            set, so the top match always displayed "100% relevant" even when it was
+            unrelated. The number looked authoritative and carried no information.
+          </p>
+          <p>
+            <strong>Switching to an absolute rank</strong> made scores comparable
+            across queries and made a minimum-relevance threshold possible, which is
+            what stops weak passages reaching the model in the first place.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-text">
+        &copy; 2026 <span class="accent">Abdellah Bedda</span>. Built with plain HTML, CSS and JavaScript.
+      </p>
+      <div class="footer-links">
+        <a href="../../index.html#projects">All projects</a>
+        <a href="https://github.com/Abdellahb9" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/abdellah-bedda-ba8a72239" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:hello@example.com">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "Assistant IA — Internship Matching",
+    "headline": "An AI platform that reads CVs, profiles candidates with NLP and assigns interns to departments with the Hungarian algorithm",
+    "url": "https://bedda-abdellah.netlify.app/projects/assistant-ia/",
+    "author": { "@type": "Person", "name": "Abdellah Bedda", "url": "https://github.com/Abdellahb9" },
+    "about": ["Natural language processing", "Combinatorial optimisation", "Full-stack web development"],
+    "keywords": "FastAPI, React, PostgreSQL, pgvector, spaCy, Celery, Docker, Hungarian algorithm, RAG"
+  }
+  </script>
+  <script type="module">
+    // Decorative background; failure to load leaves the plain canvas behind.
+    import { initPixelBlast } from '../../pixel-blast.js';
+    try {
+      initPixelBlast(document.getElementById('pixel-blast'), {
+        variant: 'square',
+        color: '#5e6ad2',
+        pixelSize: 4,
+        patternScale: 2,
+        patternDensity: 0.55,
+        speed: 0.3,
+        transparent: true,
+        edgeFade: 0.6,
+        enableRipples: true,
+        rippleIntensityScale: 0.8
+      });
+    } catch (err) {}
+  </script>
+  <script src="../../script.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,279 @@
+/* ==========================================================================
+   Case study — page-only components
+   Everything else (tokens, reset, nav, footer, .btn, .container,
+   .section-label, .section-title, .section-description, .skill-tag,
+   .reveal) comes from the global ../../style.css. Nothing is redefined here.
+
+   All classes carry a cs- prefix: the source page used .hero, .btn, .card,
+   .dot, .grid, .reveal and .section-title, five of which collide with the
+   global sheet.
+   ========================================================================== */
+
+/* ── Section rhythm ─────────────────────────────────────────────────────── */
+
+.cs-section { padding-block: var(--s-section); position: relative; z-index: 1; }
+.cs-section + .cs-section { border-top: 1px solid var(--hairline); }
+
+.cs-lead {
+  max-width: 70ch;
+  margin-top: var(--s-md);
+  font-size: 18px;
+  line-height: 1.6;
+  letter-spacing: -0.1px;
+  color: var(--ink-subtle);
+}
+
+.cs-lead strong { color: var(--ink); font-weight: 500; }
+.cs-lead + .cs-lead { margin-top: var(--s-md); }
+
+/* ── Hero ───────────────────────────────────────────────────────────────── */
+
+.cs-hero {
+  position: relative;
+  z-index: 1;
+  padding-block: 120px var(--s-xxl);
+}
+
+.cs-hero-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--s-sm);
+  margin-bottom: var(--s-lg);
+}
+
+.cs-hero-brand img {
+  width: 38px;
+  height: auto;
+  border-radius: var(--r-xs);
+}
+
+.cs-hero-brand span { font-size: 13px; color: var(--ink-subtle); }
+
+.cs-hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 6vw, 56px);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+}
+
+.cs-hero-title em { font-style: normal; color: var(--accent-text); }
+
+.cs-hero-tagline {
+  max-width: 58ch;
+  margin-top: var(--s-md);
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: -0.1px;
+  color: var(--ink-subtle);
+}
+
+.cs-actions { display: flex; flex-wrap: wrap; gap: var(--s-sm); margin-top: var(--s-lg); }
+
+/* Back link to the portfolio's projects grid */
+.cs-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 40px;
+  font-size: 14px;
+  color: var(--ink-subtle);
+  transition: color var(--dur) var(--ease);
+}
+
+.cs-back:hover { color: var(--ink); }
+.cs-back svg { width: 15px; height: 15px; }
+
+/* ── Badges (reuses .skill-tag visuals, adds the key variant) ───────────── */
+
+.cs-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: var(--s-lg); }
+
+.cs-badge-key {
+  color: var(--accent-text);
+  background: var(--surface-2);
+  border-color: var(--hairline-strong);
+}
+
+/* ── Figures ────────────────────────────────────────────────────────────── */
+
+.cs-figure { margin: 0; }
+.cs-figure + .cs-figure { margin-top: var(--s-lg); }
+
+.cs-shot {
+  overflow: hidden;
+  background: var(--surface-1);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-xl);
+}
+
+.cs-shot img { width: 100%; height: auto; display: block; }
+
+.cs-caption {
+  padding-top: var(--s-sm);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-tertiary);
+}
+
+.cs-hero-shot { margin-top: var(--s-xl); }
+
+.cs-gallery { display: grid; gap: var(--s-lg); grid-template-columns: 1fr; margin-top: var(--s-xl); }
+
+/* The UML exports are drawn for a light ground and vanish on the canvas */
+.cs-diagram {
+  padding: var(--s-md);
+  overflow-x: auto;
+  background: #fbfbfb;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-xl);
+}
+
+/* ── Feature cards ──────────────────────────────────────────────────────── */
+
+.cs-grid { display: grid; gap: var(--s-md); grid-template-columns: 1fr; margin-top: var(--s-xl); }
+
+.cs-card {
+  position: relative;
+  padding: var(--s-lg);
+  background: var(--surface-1);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-lg);
+  transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+.cs-card:hover { background: var(--surface-2); border-color: var(--hairline-strong); }
+
+.cs-card h3 {
+  display: flex;
+  align-items: center;
+  gap: var(--s-xs);
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+  color: var(--ink);
+}
+
+.cs-card p { margin-top: var(--s-xs); font-size: 14px; line-height: 1.5; color: var(--ink-subtle); }
+
+.cs-dot {
+  flex: none;
+  width: 6px;
+  height: 6px;
+  background: var(--accent-text);
+  border-radius: 50%;
+}
+
+/* ── Tech stack columns ─────────────────────────────────────────────────── */
+
+.cs-stack { display: grid; gap: var(--s-xl); grid-template-columns: 1fr; margin-top: var(--s-xl); }
+
+.cs-stack-group h3 {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-tertiary);
+}
+
+.cs-stack-group .cs-badges { margin-top: var(--s-sm); }
+
+/* ── Numbered flow ──────────────────────────────────────────────────────── */
+
+.cs-flow { margin-top: var(--s-xl); counter-reset: cs-step; }
+
+.cs-flow li {
+  position: relative;
+  padding: 0 0 var(--s-lg) 46px;
+  counter-increment: cs-step;
+}
+
+.cs-flow li::before {
+  content: counter(cs-step);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--accent-text);
+  background: var(--surface-2);
+  border: 1px solid var(--hairline-strong);
+  border-radius: 50%;
+}
+
+.cs-flow li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 34px;
+  bottom: 4px;
+  left: 15px;
+  width: 1px;
+  background: var(--hairline);
+}
+
+.cs-flow h3 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+  color: var(--ink);
+}
+
+.cs-flow p { margin-top: 4px; font-size: 14px; line-height: 1.5; color: var(--ink-subtle); }
+
+.cs-code {
+  padding: 1px 6px;
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  color: var(--accent-text);
+  background: var(--surface-3);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-xs);
+}
+
+/* ── Challenges ─────────────────────────────────────────────────────────── */
+
+.cs-learn { display: grid; gap: var(--s-md); grid-template-columns: 1fr; margin-top: var(--s-xl); }
+
+.cs-learn article {
+  padding: var(--s-lg);
+  background: var(--surface-1);
+  border: 1px solid var(--hairline);
+  border-left: 2px solid var(--primary);
+  border-radius: var(--r-lg);
+}
+
+.cs-learn h3 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+  color: var(--ink);
+}
+
+.cs-learn p { margin-top: var(--s-xs); font-size: 14px; line-height: 1.5; color: var(--ink-subtle); }
+.cs-learn strong { color: var(--ink); font-weight: 500; }
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+
+@media (min-width: 640px) {
+  .cs-gallery { grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); }
+  .cs-gallery-stack { grid-template-columns: 1fr; }
+  .cs-grid { grid-template-columns: repeat(2, 1fr); }
+  .cs-learn { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 900px) {
+  .cs-grid { grid-template-columns: repeat(3, 1fr); }
+  .cs-stack { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .cs-hero { padding-top: 104px; }
+}
