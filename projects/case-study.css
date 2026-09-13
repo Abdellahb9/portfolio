@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Case study — page-only components
+   Case studies — shared components for every projects/<slug>/ page
    Everything else (tokens, reset, nav, footer, .btn, .container,
    .section-label, .section-title, .section-description, .skill-tag,
    .reveal) comes from the global ../../style.css. Nothing is redefined here.
@@ -276,4 +276,222 @@
 
 @media (max-width: 768px) {
   .cs-hero { padding-top: 104px; }
+}
+
+/* ==========================================================================
+   AutoPark additions — browser/phone hero, fact tiles, icon cards, framed
+   gallery shots, lesson notes. Same cs- namespace, same global tokens.
+   ========================================================================== */
+
+/* The hero phone mockup hangs past the media column; clip keeps it from
+   widening the document without creating a scroll container. */
+.cs-hero { overflow-x: clip; }
+
+.cs-hero-grid { display: grid; gap: var(--s-xxl); align-items: center; }
+
+.cs-hero-media { position: relative; margin-bottom: 8%; }
+
+.cs-browser {
+  overflow: hidden;
+  background: var(--surface-1);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-xl);
+}
+
+.cs-browser-bar {
+  display: flex;
+  gap: 6px;
+  padding: 10px 14px;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.cs-browser-bar span { width: 10px; height: 10px; border-radius: 50%; background: var(--hairline-tertiary); }
+
+.cs-browser img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top left;
+}
+
+.cs-phone {
+  position: absolute;
+  right: -2%;
+  bottom: -12%;
+  width: 25%;
+  max-width: 180px;
+  padding: 5px;
+  background: var(--canvas);
+  border: 1px solid var(--hairline-strong);
+  border-radius: 22px;
+}
+
+.cs-phone img { display: block; width: 100%; height: auto; border-radius: 17px; }
+
+/* ── Fact tiles ─────────────────────────────────────────────────────────── */
+
+.cs-facts { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s-sm); margin-top: var(--s-xl); }
+
+.cs-fact {
+  display: flex;
+  flex-direction: column-reverse; /* number first visually, reads "label: value" */
+  padding: var(--s-md);
+  background: var(--surface-1);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-lg);
+}
+
+.cs-fact dt { font-size: 13px; color: var(--ink-subtle); }
+
+.cs-fact dd {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.6px;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Icon tiles on cards ────────────────────────────────────────────────── */
+
+.cs-icon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  color: var(--accent-text);
+  background: var(--surface-3);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-md);
+}
+
+.cs-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.cs-card > .cs-icon + h3 { margin-top: var(--s-md); }
+
+/* Map-pin legend. Data colours, not theme accents: they name the actual pin
+   colours visible in the screenshots, so they stay outside the lavender rule. */
+.cs-legend { display: inline-block; width: 8px; height: 8px; margin-right: 4px; border-radius: 50%; vertical-align: 1px; }
+.cs-legend-blue { background: #5b8def; }
+.cs-legend-gold { background: #f5b43c; }
+
+/* ── Framed gallery shots ───────────────────────────────────────────────── */
+
+.cs-subhead {
+  margin-top: var(--s-xxl);
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+  color: var(--ink);
+}
+
+.cs-shot { transition: border-color var(--dur) var(--ease); }
+.cs-shot:hover { border-color: var(--hairline-strong); }
+.cs-shot-link { display: block; color: inherit; }
+
+.cs-shot-frame {
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  background: var(--surface-2);
+}
+
+.cs-shot-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+  transition: transform 400ms var(--ease);
+}
+
+.cs-shot:hover .cs-shot-frame img { transform: scale(1.03); }
+
+.cs-shot-frame-phone { place-items: start center; }
+
+.cs-shot-frame-phone img {
+  width: 56%;
+  height: auto;
+  margin-top: 7%;
+  border: 5px solid var(--canvas);
+  border-bottom: 0;
+  border-radius: 20px 20px 0 0;
+}
+
+.cs-shot .cs-caption { padding: var(--s-sm) var(--s-md) var(--s-md); }
+.cs-caption strong { display: block; margin-bottom: 2px; font-size: 14px; font-weight: 500; color: var(--ink); }
+
+/* ── Stack card sub-labels ──────────────────────────────────────────────── */
+
+.cs-card h4 {
+  margin-top: var(--s-md);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-tertiary);
+}
+
+.cs-card .cs-badges { margin-top: var(--s-md); }
+.cs-card h4 + .cs-badges { margin-top: var(--s-xs); }
+
+/* ── Lesson notes + next steps ──────────────────────────────────────────── */
+
+.cs-learn .cs-lesson {
+  margin-top: var(--s-md);
+  padding-top: var(--s-sm);
+  border-top: 1px dashed var(--hairline-strong);
+  color: var(--ink-muted);
+}
+
+.cs-lesson b {
+  display: block;
+  margin-bottom: 4px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+}
+
+.cs-next {
+  margin-top: var(--s-lg);
+  padding: var(--s-md) var(--s-lg);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-muted);
+  background: var(--surface-1);
+  border: 1px solid var(--hairline-strong);
+  border-left: 2px solid var(--primary);
+  border-radius: var(--r-lg);
+}
+
+.cs-next strong { color: var(--ink); font-weight: 500; }
+
+@media (min-width: 640px) {
+  .cs-facts { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (min-width: 960px) {
+  .cs-hero-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 56px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-shot:hover .cs-shot-frame img { transform: none; }
 }
